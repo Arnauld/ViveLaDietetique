@@ -1,0 +1,356 @@
+@CHARSET "ISO-8859-1";
+/* CSS général  */
+body {
+	background:#fff;
+    margin:0;
+    padding:0;
+    color:#000;
+    font: 0.8em Verdana, Arial, sans-serif;
+	background-color: white; 
+}
+
+p {
+	text-align:justify;
+}
+
+strong {
+	color: #FF9900;
+}
+
+.strongAlt {
+	font-weight:bold;
+	color: #FF9900;
+}
+
+.strongCurr {
+	font-weight:bold;
+	color: #093;
+}
+
+#documentContent {
+	width: 90%;
+	margin: 10px auto;
+}
+
+#pageContentNav {
+	float:right;
+	display:block;
+	background-color:white;
+	border-width:2px;
+	border-style:solid;
+	border-color:#093;
+	margin:1px;
+	padding-bottom:1px;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:1px;
+	color:#093;
+}
+
+#pageContentNav ul li {
+	list-style-type: square;
+	color: #093;
+}
+
+#pageContent {
+	padding : 5px 5px 5px 10px;
+	background-color: #fff;
+	color: #333;
+	border-width: 1px;
+	border-color: #FF9900;
+	border-style :  none dotted dotted dotted;
+	line-height: 130%;
+	
+	clear: both ;
+	color:black;
+}
+
+#pageContent h1 {
+	margin:2px;
+	padding:10px; 
+	color:white;
+	background-color: #093; /*#FF9900;*/
+}
+
+#pageContent h2 {
+	border-left-width:5px;
+	border-left-style:solid;
+	border-left-color:#009933;
+	margin:2px;
+	padding:10px; 
+	color:#009933;
+}
+
+#pageContentNav h2 {
+	border:0px;
+}
+
+#pageContent p {
+	position:relative;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#pageContent a {
+	color: #f90;
+}
+
+#pageContent h3 {
+	border-left-width:2px;
+	border-left-style:solid;
+	border-left-color:#f90;
+	margin-left:20px;
+	padding-top: 5px;
+    padding-right: 2px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+	color:#f90;
+}
+
+#pageContent li { list-style-type: square; }
+
+#pageContent li li { list-style-type: circle; }
+
+#pageHeader {
+width=650px;
+margin:10;
+position:relative;
+}
+
+#pageHeader h1 span {
+visibility:hidden;
+}
+
+#pageHeader h2 span {
+visibility:hidden;
+}
+
+#pageHeader h2 {
+	float:left;
+	width:112px;
+	height:137px;
+	background:url(images/logo-blanc.png) no-repeat;
+	z-index:1;
+}
+
+#documentLogo {
+	float:left;
+	width:112px;
+	height:137px;
+	background:url(images/logo-blanc.png) no-repeat;
+	z-index:1;
+}
+
+#documentLogo span {
+	visibility:hidden;
+}
+
+#pageHeader h1 {
+	float:right;
+	width:541px;
+	height:83px;
+	background:url(images/banniere-blanche.png) no-repeat;
+	z-index:1;
+}
+
+#pageHeader h2 span {
+visibility:hidden;
+}
+
+/*
+*****************************************************************************************
+ CADRE
+ */
+.cadre {
+	margin:0.5em;
+	width:15em;
+	color:#FF9900;
+	background-color:#66CC33;
+}
+
+/* propriétés des coins du cadres */
+.coinHG, .coinHD, .coinBG, .coinBD {
+	height:20px;
+	width:20px;
+	background-repeat: no-repeat;
+	font-size:1px;
+}
+.coinHG {
+	background-image:url(images/coinHG.png);
+}
+.coinHD {
+	float:right;
+	background-image:url(images/coinHD.png);
+}
+.coinBG {
+	background-image:url(images/coinBG.png);
+}
+.coinBD {
+	float:right;
+	background-image:url(images/coinBD.png);
+}
+
+/*
+ * cadre 2
+ */
+.cadre_container {
+	clear:both;
+	width: 50%;
+	margin: 10px;
+	text-align: left;
+	background: white url(images/page-gauche.png) repeat-y left;
+}
+	
+.cadre_header {
+	height: 1%;
+	background: url(images/page-haut-droite.png) no-repeat right top;
+}
+.cadre_header h6 {
+	font-size:medium;
+	margin: 0;
+	padding-top: 20px;
+	background: url(images/page-haut-gauche.png) no-repeat left top;
+	text-align: center;
+	
+}
+
+.cadre_header h6 span {
+	visibility: hidden;
+}
+
+.cadre_content {
+	margin-top: -20px;
+	padding: 1em 30px;
+	margin-top: -10px;
+	background: url(images/page-droite.png) repeat-y right;
+}
+
+.cadre_footer {
+	background: url(images/page-bas-droite.png) no-repeat right bottom;
+}
+.cadre_footer h6 {
+	margin: 0;
+	padding: 10px 30px 30px 30px;
+	background: url(images/page-bas-gauche.png) no-repeat left bottom;
+	text-align: right;
+}
+.cadre_footer h6 span {
+	visibility: hidden;
+}
+
+/*******************************************************************************
+ MENU
+ */
+#menu ul {
+	list-style-type: none;
+	margin: 0;
+	padding-left: 5px;
+	padding-bottom: 5px;
+	padding-right: 5px;
+	padding-top: 5px;
+}
+
+#menu a{
+	display: block;
+	height: 0.9em;
+	/*width: 250px;*/
+	text-decoration: none;
+	color: white;
+	text-indent: 20px;
+	background-image:url(images/puce0.gif);
+	background-position: left center;
+	background-repeat: no-repeat;
+}
+
+#menu a:hover{
+	color: #FF9F40;
+	background-image:url(images/puce1.gif);
+	background-position: left center;
+	background-repeat: no-repeat;
+}
+
+
+/* Liens en dessous du footer */
+#footer {
+	clear:both;
+	color: #009933;
+	padding: 0 0 11px 0;
+	cursor: pointer;
+	font-size: xx-small;
+	font-family: sans-serif, sans;
+	background:none;
+}
+#footer a {
+	color: #009933;
+	background:none;
+}
+#footer a:hover {
+	color: #FF9F40;
+}
+
+.cloud {
+	margin-left: 10px;
+}
+
+.cloud1 {
+	margin-left: 10px;
+}
+
+.cloud2 {
+	margin-left: 20px;
+}
+
+.cloud3 {
+	margin-left: 30px;
+}
+
+.cloud4 {
+	margin-left: 40px;
+}
+
+.cloud5 {
+	margin-left: 50px;
+}
+
+.cloud6 {
+	margin-left: 60px;
+}
+
+.cloud7 {
+	margin-left: 70px;
+}
+
+.cloud8 {
+	margin-left: 80px;
+}
+
+/*
+ * quote, pullquote et blockquote
+ */
+.pullquote {
+ 	width: 30%;
+	float:right;
+	font-size:125%;
+	line-height:140%;
+	margin:10px;
+	background: url(images/blockquote_close.gif) no-repeat bottom right;
+	padding:0px 25px 5px 0px;
+}
+
+.quote_content {
+	font-style:italic;
+	background: url(images/blockquote_open.gif) no-repeat left top;
+	padding:5px 2px 10px 35px;
+}
+
+.quote_content h2 {
+	border:none;
+	margin-left:0px;
+	padding: 0px;
+	color:#000;
+}
+
+
+ 

@@ -1,0 +1,139 @@
+@CHARSET "ISO-8859-1";
+/* CSS général  */
+body {
+	font: 0.8em Verdana, Arial, sans-serif;
+	color:#FF9900;
+	background-color: #33CC00; 
+}
+
+#container{
+     position: relative; /* on positionne le conteneur */
+     margin-left: auto;
+     margin-right: auto;
+     width: 650px;
+     text-align: left;
+}
+
+#pageHeader {
+width:650px;
+height:90px;
+background-color: #33CC00;
+background:url(images/banniere-verte.png) no-repeat;
+z-index:1;
+}
+
+#pageHeader span{
+visibility:hidden;
+}
+
+#pageContent {
+}
+
+/*
+ MENU
+ */
+ 
+/* LA BALISE UL *
+ * ------------ *
+ * La balise UL va servir de conteneur global pour le menu 
+ * NOTE : Dans le cadre de ce menu, les balises LI ne nous servent
+ *        a rien, elle ne seront donc pas redefinie
+ */
+ ul{
+ /* La balise est déclaré en position "relative" afin que les futurs balises A
+  * utilisent la balise UL comme point de repère de leurs propres coordonnés absolus
+  * NOTE : la position "relative" est preférée a la position "absolute" afin 
+  *        de conserver le menu dans le flux HTML
+  */
+  position:relative;
+
+ /* On supprime les puces pour les elements LI de la balise */
+  list-style:none;
+	
+ /* On s'assure qu'il n'y aura aucun décalage autour du menu
+  * NOTE : il faut définir le padding ET le margin car dans le cadre des listes à
+  *        puces. Les différents navigateurs utilisent l'une ou l'autre des valeurs
+  *        pour afficher les puces et assurer les retraits des elements.
+  */
+  padding: 0px;
+  margin: 0px;
+	
+ /* On définie la largeur et la hauteur de la balise en fonction des dimensions de l'image de fond	*/
+  width:700px;
+  height:400px;
+	
+ /* On definit le background de la balise */
+  background: url(images/accueil-background.png) no-repeat;
+}
+
+#menu a {
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#menu span{
+visibility:hidden;
+}
+
+/*
+ * Habillage de chaque lien.
+ * Son comportement est changÃ© en un Ã©lÃ©ment de type bloc par opposition au type
+ * en ligne par dÃ©faut. Tout le rectangle devient alors rÃ©actif.
+ */
+#menu a {
+	position:absolute;
+	display: block; /* le lien se met Ã  occuper tout l'espace */
+	height:35px;
+}
+
+#menu a:hover {
+	background-position:0% -35px;
+}
+
+#presentation {
+	top:7px;
+	left:27px;
+	width:165px;
+  	background: url(images/accueil-presentation.png) no-repeat;
+}
+
+#cabinet {
+	top:105px;
+	left:41px;
+	width:135px;
+	background: url(images/accueil-cabinet.png) no-repeat;
+}
+
+#infonut {
+	top:137px;
+	left:330px;
+	width:360px;
+	background: url(images/accueil-infonut.png) no-repeat;
+}
+
+#diet {
+	top:256px;
+	left:363px;
+	width:205px;
+	background: url(images/accueil-nathalie.png) no-repeat;
+}
+
+
+/* Liens en dessous du footer */
+#footer {
+	color: #ff8040;
+	padding: 0 0 11px 0;
+	cursor: pointer;
+	font-size: xx-small;
+	font-family: sans-serif, sans;
+	background:none;
+}
+#footer a {
+	color: #FF9900;
+	background:none;
+}
+#footer a:hover {
+	color: #fff;
+}
