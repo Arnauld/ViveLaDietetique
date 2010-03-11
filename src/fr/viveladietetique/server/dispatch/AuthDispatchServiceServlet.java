@@ -38,7 +38,7 @@ public class AuthDispatchServiceServlet extends RemoteServiceServlet
         implements AuthDispatchService
 {
     private static final long serialVersionUID = -1456388230348266500L;
-    private static final Log LOG = LogFactory.getLog(AuthDispatchServiceServlet.class);
+    private static final Log logger = LogFactory.getLog(AuthDispatchServiceServlet.class);
 
     private final Dispatch dispatch;
     private Provider<HttpServletRequest> req;
@@ -46,19 +46,19 @@ public class AuthDispatchServiceServlet extends RemoteServiceServlet
     @Inject
     public AuthDispatchServiceServlet(Dispatch dispatch, Provider<HttpServletRequest> req, Provider<ServletContext> context)
     {
-        LOG.info("Initializing servlet: "+dispatch+".");
+        logger.info("Initializing servlet: "+dispatch+".");
         this.dispatch = dispatch;
         this.req = req;
     }
 
     public Result execute(String clientSessionId, Action<?> action) throws Exception
     {
-        LOG.info("Executing action: "+action+" using sessionId: "+clientSessionId+".");
+        logger.info("Executing action: "+action+" using sessionId: "+clientSessionId+".");
         try
         {
             AppUser user = getCurrentUser();
             if(user.isAnonymous()) {
-                LOG.info("No user connected");
+                logger.info("No user connected");
             }
             else
             {
@@ -78,7 +78,7 @@ public class AuthDispatchServiceServlet extends RemoteServiceServlet
         }
         catch (RuntimeException e)
         {
-            LOG.warn("Internal error while executing " + action.getClass().getName()
+            logger.warn("Internal error while executing " + action.getClass().getName()
                     + ": " + e.getMessage(), e);
             throw e;
         }
@@ -87,7 +87,7 @@ public class AuthDispatchServiceServlet extends RemoteServiceServlet
     protected boolean canExecute(AppUser user, Action<?> action) {
     	RoleGuard guard = action.getClass().getAnnotation(RoleGuard.class);
     	if(guard==null) {
-    		LOG.info("No guard found on: "+action);
+    		logger.info("No guard found on: "+action);
         	return true;
     	}
     	RoleOp op = guard.op();
@@ -97,9 +97,7 @@ public class AuthDispatchServiceServlet extends RemoteServiceServlet
     			.guardedBy(guard.roles())
     			.isFullfilled();
 
-    	LOG.info("User does fullfills guard: "+op+" "+Arrays.toString(guard.roles())+": "+isFullfilled);
-    	if(!isFullfilled) {
-    	}
+    	logger.info("Does User fullfill guard: "+op+" "+Arrays.toString(guard.roles())+": "+isFullfilled);
     	
     	return isFullfilled;
 	}
@@ -134,8 +132,8 @@ public class AuthDispatchServiceServlet extends RemoteServiceServlet
     protected boolean isSessionValid(String clientSessionId) {
 	    String sessionId = getSessionId();
 	    
-	    if(LOG.isDebugEnabled())
-	    	LOG.debug("Comparing client sessionId: '"+clientSessionId+"' with server sessionId: '"+sessionId+"'");
+	    if(logger.isDebugEnabled())
+	    	logger.debug("Comparing client sessionId: '"+clientSessionId+"' with server sessionId: '"+sessionId+"'");
 	    
 	    String serverName = req.get().getServerName();
 	    // Skip check on localhost so we can test in AppEngine local dev env

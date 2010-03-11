@@ -8,7 +8,6 @@ public enum RoleOp {
 	AllOf,
 	NoneOf;
 	
-	
 	public Matcher newMatcher() {
 		switch(this) {
 			case AllOf : {

@@ -13,14 +13,18 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasValue;
 import com.google.inject.Inject;
 
+import fr.viveladietetique.shared.event.SessionOpenedEvent;
 import fr.viveladietetique.shared.event.GreetingSentEvent;
-import fr.viveladietetique.shared.rpc.SendGreeting;
+import fr.viveladietetique.shared.rpc.OpenSession;
+import fr.viveladietetique.shared.rpc.OpenSessionResult;
 import fr.viveladietetique.shared.rpc.SendGreetingResult;
 
 public class GreetingHomePresenter extends WidgetPresenter<GreetingHomePresenter.Display>
+	
 {
     /**
      * The message displayed to the user when the server cannot be reached or
@@ -32,8 +36,11 @@ public class GreetingHomePresenter extends WidgetPresenter<GreetingHomePresenter
 
     public interface Display extends WidgetDisplay
     {
-        public HasValue<String> getLogin();
+    	public HasValue<String> getLogin();
+        public HasValue<String> getPassword();
+        public HasText          getError();
         public HasClickHandlers getConnect();
+        public HasClickHandlers getRegister();
     }
 
     public static final Place PLACE = new Place("Greeting");
@@ -71,10 +78,16 @@ public class GreetingHomePresenter extends WidgetPresenter<GreetingHomePresenter
     	{
     		public void onClick(final ClickEvent event)
     		{
-    			doSend();
+    			doConnect();
     		}
     	});
-    	
+    	display.getRegister().addClickHandler(new ClickHandler()
+    	{
+    		public void onClick(final ClickEvent event)
+    		{
+    			//doRegister();
+    		}
+    	});
     }
     
     @Override
@@ -84,16 +97,45 @@ public class GreetingHomePresenter extends WidgetPresenter<GreetingHomePresenter
     }
 
     /**
-     * Try to send the greeting message
+     * Try to connect
      */
-    private void doSend()
+    private void doConnect()
     {
-    	Log.info("Calling doSend");
+    	Log.info("Calling doConnect");
     	
+    	// reset any error display
+    	display.getError().setText("");
+    	
+    	// login infos.
     	String name = display.getLogin().getValue();
-    	DisplayCallback<SendGreetingResult> callback = createCallback();
+    	String pass = display.getPassword().getValue();
     	
-    	dispatcher.execute(new SendGreeting(name), callback);
+    	dispatcher.execute(new OpenSession(name,pass), createConnectCallback());
+    }
+    
+    private DisplayCallback<OpenSessionResult> createConnectCallback()
+    {
+        return new DisplayCallback<OpenSessionResult>(display)
+        {
+            @Override
+            protected void handleFailure(final Throwable cause)
+            {
+                Log.error("Handle Failure [GreetingHomePresenter]: " + cause.getLocalizedMessage(), cause);
+                Window.alert(SERVER_ERROR+"\n"+cause.getLocalizedMessage());
+            }
+
+            @Override
+            protected void handleSuccess(final OpenSessionResult result)
+            {
+            	if(result.isConnected()) {
+	                // take the result from the server and notify client interested
+	                // components
+	                eventBus.fireEvent(new SessionOpenedEvent(result.getName(), result.getMessage()));
+            	}else{
+            		display.getError().setText(result.getFailureReason());
+            	}
+            }
+        };
     }
     
     private DisplayCallback<SendGreetingResult> createCallback()
@@ -116,7 +158,6 @@ public class GreetingHomePresenter extends WidgetPresenter<GreetingHomePresenter
             }
         };
     }
-
 
     public void refreshDisplay()
     {

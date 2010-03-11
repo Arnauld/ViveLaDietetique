@@ -17,7 +17,7 @@ public class ViveLaDietetique implements EntryPoint
     public void onModuleLoad() {
         
         final AppPresenter appPresenter = injector.getAppPresenter();
-        appPresenter.go(RootPanel.get());
+        appPresenter.go(RootPanel.get("dataContent"));
 
         injector.getPlaceManager().fireCurrentPlace();
     }
