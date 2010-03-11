@@ -4,8 +4,7 @@ h1. GWT theme
  http://gwt-theme-generator.appspot.com/
  with rgb(255,153,0)
  
- h1. GIT
- 
+h1. GIT 
  
 * git+ssh
 * github.com
